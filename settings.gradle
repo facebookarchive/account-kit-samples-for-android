@@ -1,2 +1,4 @@
 // AccountKit
-include ':AccountKitSample'
+
+include ':samples:AccountKitSample'
+include ':samples:AccountKitSimpleSample'
