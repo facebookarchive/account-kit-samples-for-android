@@ -59,7 +59,7 @@ public class AccountKitSampleAdvancedUIManager implements AdvancedUIManager, Par
 
     @Override
     @Nullable
-    public  Fragment getActionBarFragment(final LoginFlowState state) {
+    public Fragment getActionBarFragment(final LoginFlowState state) {
         final PlaceholderFragment fragment = getPlaceholderFragment(
                 state,
                 ACTION_BAR_HEIGHT,
