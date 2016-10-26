@@ -24,15 +24,12 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.SmallTest;
 
+import com.example.accountkitsample.email.EmailLoginUtil;
+import com.example.accountkitsample.phone.PhoneLoginUtil;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
@@ -44,15 +41,11 @@ public class MainActivityTest {
 
     @Test
     public void phoneButtonTest() {
-        onView(withText(R.string.log_in_phone_button)).check(matches(isDisplayed()));
-        onView(withText(R.string.log_in_phone_button)).perform(click());
-        onView(withText("Enter your phone number")).check(matches(isDisplayed()));
+        PhoneLoginUtil.startPhoneLogin();
     }
 
     @Test
     public void emailButtonTest() {
-        onView(withText(R.string.log_in_email_button)).check(matches(isDisplayed()));
-        onView(withText(R.string.log_in_email_button)).perform(click());
-        onView(withText("Enter your email address")).check(matches(isDisplayed()));
+        EmailLoginUtil.startEmailLogin();
     }
 }
