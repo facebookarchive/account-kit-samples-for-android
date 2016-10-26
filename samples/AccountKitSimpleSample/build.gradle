@@ -20,14 +20,6 @@ android {
         compile 'com.android.support:appcompat-v7:24.2.1'
     }
 
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            res.srcDirs = ['res']
-        }
-    }
-
     splits {
         abi {
             enable true
