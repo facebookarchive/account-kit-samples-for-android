@@ -24,8 +24,6 @@ import android.app.Application;
 import android.os.Build;
 import android.os.StrictMode;
 
-import com.facebook.accountkit.AccountKit;
-
 public class AccountKitSampleApplication extends Application {
     @Override
     public void onCreate() {
@@ -35,8 +33,6 @@ public class AccountKitSampleApplication extends Application {
             // warnings about expected activity counts
             enableStrictMode();
         }
-
-        AccountKit.initialize(getApplicationContext());
     }
 
     public void enableStrictMode() {
