@@ -9,7 +9,7 @@ android {
         targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
 
         // Optional: Specify only the language(s) your app supports to minimize the APK size.
-        // resConfigs "en", "fr", "pt-rBR"
+        // resConfigs "en", "fr", "pt-rPT"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
