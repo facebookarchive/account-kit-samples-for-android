@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
  *
  * You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -468,20 +468,17 @@ public class MainActivity extends Activity {
                 = new AccountKitConfiguration.AccountKitConfigurationBuilder(
                 loginType,
                 getResponseType());
-        final Switch titleTypeSwitch = (Switch) findViewById(R.id.title_type_switch);
         final Switch stateParamSwitch = (Switch) findViewById(R.id.state_param_switch);
         final Switch facebookNotificationsSwitch =
                 (Switch) findViewById(R.id.facebook_notification_switch);
+        final Switch voiceCallSwitch =
+                (Switch) findViewById(R.id.voice_call_switch);
         final Switch useManualWhiteListBlacklist =
                 (Switch) findViewById(R.id.whitelist_blacklist_switch);
         final Switch readPhoneStateSwitch =
                 (Switch) findViewById(R.id.read_phone_state_switch);
         final Switch receiveSMS =
                 (Switch) findViewById(R.id.receive_sms_switch);
-
-        if (titleTypeSwitch != null && titleTypeSwitch.isChecked()) {
-            configurationBuilder.setTitleType(AccountKitActivity.TitleType.APP_NAME);
-        }
 
         final UIManager uiManager;
         if (advancedUISwitch != null && advancedUISwitch.isChecked()) {
@@ -521,17 +518,16 @@ public class MainActivity extends Activity {
             final @ColorInt int primaryColor = ContextCompat.getColor(this, R.color.default_color);
             if (getBackgroundImage() >= 0) {
                 uiManager = new SkinManager(
-                        loginType,
                         skin,
                         primaryColor,
                         getBackgroundImage(),
                         getSkinTintOption(),
                         getSkinBackgroundTintIntensity());
             } else {
-                uiManager = new SkinManager(loginType, skin, primaryColor);
+                uiManager = new SkinManager(skin, primaryColor);
             }
         } else {
-            uiManager = new ThemeUIManager(loginType, selectedThemeId);
+            uiManager = new ThemeUIManager(selectedThemeId);
         }
 
         configurationBuilder.setUIManager(uiManager);
@@ -543,6 +539,9 @@ public class MainActivity extends Activity {
 
         if (facebookNotificationsSwitch != null && !facebookNotificationsSwitch.isChecked()) {
             configurationBuilder.setFacebookNotificationsEnabled(false);
+        }
+        if (voiceCallSwitch != null && !voiceCallSwitch.isChecked()) {
+            configurationBuilder.setVoiceCallbackNotificationsEnabled(false);
         }
 
         if (useManualWhiteListBlacklist != null && useManualWhiteListBlacklist.isChecked()) {
