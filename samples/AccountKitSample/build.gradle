@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
-    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    compileSdkVersion project.ext.compileSdk
+    buildToolsVersion project.ext.buildTools
 
     defaultConfig {
-        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
-        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        minSdkVersion project.ext.minSdk
+        targetSdkVersion project.ext.targetSdk
 
         // Optional: Specify only the language(s) your app supports to minimize the APK size.
         // resConfigs "en", "fr", "pt-rPT"
@@ -16,11 +16,11 @@ android {
 
     dependencies {
         compile 'com.facebook.android:account-kit-sdk:4.+'
-        compile 'com.android.support:appcompat-v7:24.2.1'
+        compile "com.android.support:appcompat-v7:${project.ext.supportLibraryVersion}"
 
         testCompile 'junit:junit:4.12'
 
-        androidTestCompile 'com.android.support:support-annotations:24.2.1'
+        androidTestCompile "com.android.support:support-annotations:${project.ext.supportLibraryVersion}"
         androidTestCompile 'com.android.support.test:runner:0.5'
         androidTestCompile 'com.android.support.test:rules:0.5'
         androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
