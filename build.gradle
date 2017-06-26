@@ -4,12 +4,17 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.2'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
     }
+
+    project.apply from: "${rootDir}/constants.gradle"
 }
