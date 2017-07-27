@@ -39,6 +39,8 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -130,20 +132,22 @@ public class MainActivity extends Activity {
         };
         switch (loginType) {
             case EMAIL:
-                final OnCompleteListener getAccountsCompleteListener = completeListener;
-                completeListener = new OnCompleteListener() {
-                    @Override
-                    public void onComplete() {
-                        requestPermissions(
-                                Manifest.permission.GET_ACCOUNTS,
-                                R.string.permissions_get_accounts_title,
-                                R.string.permissions_get_accounts_message,
-                                getAccountsCompleteListener);
-                    }
-                };
+                if (!isGooglePlayServicesAvailable()) {
+                    final OnCompleteListener getAccountsCompleteListener = completeListener;
+                    completeListener = new OnCompleteListener() {
+                        @Override
+                        public void onComplete() {
+                            requestPermissions(
+                                    Manifest.permission.GET_ACCOUNTS,
+                                    R.string.permissions_get_accounts_title,
+                                    R.string.permissions_get_accounts_message,
+                                    getAccountsCompleteListener);
+                        }
+                    };
+                }
                 break;
             case PHONE:
-                if (configuration.isReceiveSMSEnabled()) {
+                if (configuration.isReceiveSMSEnabled() && !canReadSmsWithoutPermission()) {
                     final OnCompleteListener receiveSMSCompleteListener = completeListener;
                     completeListener = new OnCompleteListener() {
                         @Override
@@ -156,7 +160,7 @@ public class MainActivity extends Activity {
                         }
                     };
                 }
-                if (configuration.isReadPhoneStateEnabled()) {
+                if (configuration.isReadPhoneStateEnabled() && !isGooglePlayServicesAvailable()) {
                     final OnCompleteListener readPhoneStateCompleteListener = completeListener;
                     completeListener = new OnCompleteListener() {
                         @Override
@@ -172,6 +176,23 @@ public class MainActivity extends Activity {
                 break;
         }
         completeListener.onComplete();
+    }
+
+    private boolean isGooglePlayServicesAvailable() {
+        final GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int googlePlayServicesAvailable = apiAvailability.isGooglePlayServicesAvailable(this);
+        return googlePlayServicesAvailable == ConnectionResult.SUCCESS;
+    }
+
+    private boolean canReadSmsWithoutPermission() {
+        final GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int googlePlayServicesAvailable = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (googlePlayServicesAvailable == ConnectionResult.SUCCESS) {
+            return true;
+        }
+        //TODO we should also check for Android O here t18761104
+
+        return false;
     }
 
     private void requestPermissions(
