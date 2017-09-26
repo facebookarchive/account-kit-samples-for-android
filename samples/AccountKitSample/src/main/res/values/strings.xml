@@ -21,10 +21,10 @@
 
 <resources>
     <string name="action_bar_title_hello">Hello</string>
-    <string name="ak_login_protocol_scheme">ak559717777526537</string>
-    <string name="app_id">559717777526537</string>
+    <string name="ak_login_protocol_scheme">ak147274049205315</string>
+    <string name="app_id">147274049205315</string>
     <string name="app_name">Account Kit Sample</string>
-    <string name="client_token">b895234af645976dee1e39a60fdd0592</string>
+    <string name="client_token">e4ec8190ade85a467c7f2822a3f63fda</string>
     <string name="code_label">Code</string>
     <string name="config_advanced_ui_label">Use advanced UI theming</string>
     <string name="config_confirm_button_label">Confirm button Text</string>
