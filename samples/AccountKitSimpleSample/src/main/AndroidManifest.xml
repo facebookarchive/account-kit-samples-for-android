@@ -32,7 +32,7 @@
     <uses-sdk android:minSdkVersion="15"
               android:targetSdkVersion="23" />
 
-    <variable name="applicationId" value="com.example.accountkitsample" />
+    <variable name="applicationId" value="com.example.accountkitsimplesample" />
 
     <application
         android:name=".AccountKitSimpleSampleApplication"
