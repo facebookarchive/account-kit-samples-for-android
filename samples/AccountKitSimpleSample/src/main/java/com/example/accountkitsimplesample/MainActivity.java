@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (AccountKit.getCurrentAccessToken() != null) {
+        if (AccountKit.getCurrentAccessToken() != null && savedInstanceState == null) {
             startActivity(new Intent(this, TokenActivity.class));
         }
     }
