@@ -104,6 +104,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Check if we're logged in already when the app is first started.
         if (AccountKit.getCurrentAccessToken() != null && savedInstanceState == null) {
             showHelloActivity(null);
         }

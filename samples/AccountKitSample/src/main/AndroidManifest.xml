@@ -33,8 +33,6 @@
     <uses-sdk android:minSdkVersion="15"
               android:targetSdkVersion="23" />
 
-    <variable name="applicationId" value="com.example.accountkitsample" />
-
     <application
         android:name=".AccountKitSampleApplication"
         android:allowBackup="true"

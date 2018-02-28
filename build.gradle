@@ -1,10 +1,13 @@
 buildscript {
+    apply from: "${rootDir}/constants.gradle"
+
     repositories {
         jcenter()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath "com.android.tools.build:gradle:${project.ext.gradleVersion}"
     }
 }
 

@@ -74,6 +74,7 @@ public class ReverbUIManager extends BaseUIManager {
     @Nullable
     public Fragment getBodyFragment(final LoginFlowState state) {
         int iconResourceId = 0;
+        int iconTintResourceId = 0;
         boolean showProgressSpinner = false;
         switch (state) {
             case SENDING_CODE:
@@ -98,6 +99,7 @@ public class ReverbUIManager extends BaseUIManager {
                 break;
             case VERIFIED:
                 iconResourceId = R.drawable.reverb_progress_complete;
+                iconTintResourceId = R.color.reverb_dark;
                 break;
             case ERROR:
                 iconResourceId = R.drawable.reverb_error;
@@ -111,10 +113,11 @@ public class ReverbUIManager extends BaseUIManager {
             default:
                 return null;
         }
-        final ReverbBodyFragment fragment = new ReverbBodyFragment();
-        fragment.setIconResourceId(iconResourceId);
-        fragment.setShowProgressSpinner(showProgressSpinner);
-        return fragment;
+
+        return ReverbBodyFragment.newInstance(
+                iconResourceId,
+                iconTintResourceId,
+                showProgressSpinner);
     }
 
     @Override
