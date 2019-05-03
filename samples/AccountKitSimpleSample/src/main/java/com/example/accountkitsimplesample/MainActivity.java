@@ -120,6 +120,8 @@ public class MainActivity extends Activity {
                 = new AccountKitConfiguration.AccountKitConfigurationBuilder(
                 loginType,
                 AccountKitActivity.ResponseType.TOKEN);
+        //By default enableInitialSmsButton=true which displays sms as login option alongwith whatsapp
+        configurationBuilder.setEnableInitialSmsButton(false);
         final AccountKitConfiguration configuration = configurationBuilder.build();
         intent.putExtra(
                 AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
@@ -147,19 +149,6 @@ public class MainActivity extends Activity {
                 }
                 break;
             case PHONE:
-                if (configuration.isReceiveSMSEnabled() && !canReadSmsWithoutPermission()) {
-                    final OnCompleteListener receiveSMSCompleteListener = completeListener;
-                    completeListener = new OnCompleteListener() {
-                        @Override
-                        public void onComplete() {
-                            requestPermissions(
-                                    Manifest.permission.RECEIVE_SMS,
-                                    R.string.permissions_receive_sms_title,
-                                    R.string.permissions_receive_sms_message,
-                                    receiveSMSCompleteListener);
-                        }
-                    };
-                }
                 if (configuration.isReadPhoneStateEnabled() && !isGooglePlayServicesAvailable()) {
                     final OnCompleteListener readPhoneStateCompleteListener = completeListener;
                     completeListener = new OnCompleteListener() {

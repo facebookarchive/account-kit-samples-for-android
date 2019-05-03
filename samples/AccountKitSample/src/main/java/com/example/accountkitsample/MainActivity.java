@@ -486,8 +486,8 @@ public class MainActivity extends Activity {
                 (Switch) findViewById(R.id.whitelist_blacklist_switch);
         final Switch readPhoneStateSwitch =
                 (Switch) findViewById(R.id.read_phone_state_switch);
-        final Switch receiveSMS =
-                (Switch) findViewById(R.id.receive_sms_switch);
+        final Switch enableInitialSmsButton =
+                (Switch) findViewById(R.id.enable_sms_button_switch);
 
         final UIManager uiManager;
         if (advancedUISwitch != null && advancedUISwitch.isChecked()) {
@@ -566,8 +566,8 @@ public class MainActivity extends Activity {
             configurationBuilder.setReadPhoneStateEnabled(false);
         }
 
-        if (receiveSMS != null && !receiveSMS.isChecked()) {
-            configurationBuilder.setReceiveSMS(false);
+        if (enableInitialSmsButton != null) {
+            configurationBuilder.setEnableInitialSmsButton(enableInitialSmsButton.isChecked());
         }
 
         return configurationBuilder;
@@ -630,19 +630,6 @@ public class MainActivity extends Activity {
                 }
                 break;
             case PHONE:
-                if (configuration.isReceiveSMSEnabled() && !canReadSmsWithoutPermission()) {
-                    final OnCompleteListener receiveSMSCompleteListener = completeListener;
-                    completeListener = new OnCompleteListener() {
-                        @Override
-                        public void onComplete() {
-                            requestPermissions(
-                                    Manifest.permission.RECEIVE_SMS,
-                                    R.string.permissions_receive_sms_title,
-                                    R.string.permissions_receive_sms_message,
-                                    receiveSMSCompleteListener);
-                        }
-                    };
-                }
                 if (configuration.isReadPhoneStateEnabled() && !isGooglePlayServicesAvailable()) {
                     final OnCompleteListener readPhoneStateCompleteListener = completeListener;
                     completeListener = new OnCompleteListener() {

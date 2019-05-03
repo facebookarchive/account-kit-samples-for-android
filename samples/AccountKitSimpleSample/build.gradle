@@ -15,7 +15,7 @@ android {
     }
 
     dependencies {
-        implementation 'com.facebook.android:account-kit-sdk:4.+'
+        implementation 'com.facebook.android:account-kit-sdk:5.0.0'
         implementation "com.android.support:support-v4:${project.ext.supportLibraryVersion}"
         implementation 'com.google.android.gms:play-services-base:11.8.0'
     }
